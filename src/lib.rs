@@ -92,7 +92,7 @@ enum ContractError {
     /// Already finished.
     AlreadyFinished,
     /// exipred for voting.
-    // Expired,
+    Expired,
     /// not exipred for tallying.
     // NotExpired,
     /// Voter is not found.
@@ -277,8 +277,8 @@ fn contract_vote<S: HasStateApi>(
     );
 
     // expiryを超えていなければ実行できる。
-    // let slot_time = ctx.metadata().slot_time();
-    // ensure!(slot_time <= state.expiry, ContractError::Expired);
+    let slot_time = ctx.metadata().slot_time();
+    ensure!(slot_time <= state.expiry, ContractError::Expired);
 
     state.vote(&sender_address, &params.proposal_id)?;
 
@@ -340,8 +340,8 @@ fn cancel_vote<S: HasStateApi>(
     );
 
     // expiryを超えていなければ実行できる。
-    // let slot_time = ctx.metadata().slot_time();
-    // ensure!(slot_time <= state.expiry, ContractError::Expired);
+    let slot_time = ctx.metadata().slot_time();
+    ensure!(slot_time <= state.expiry, ContractError::Expired);
 
     state.cancel_vote(&sender_address)?;
 
