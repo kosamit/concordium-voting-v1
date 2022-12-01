@@ -72,7 +72,7 @@ struct GetVoteParams {
 }
 
 /// Contract error type
-#[derive(Debug, PartialEq, Eq, Reject)]
+#[derive(Serialize, Debug, PartialEq, Eq, Reject, SchemaType)]
 enum ContractError {
     /// Failed parsing the parameter.
     #[from(ParseError)]

@@ -5,10 +5,12 @@ authors = ["kosamit <kosamit@gmail.com>"]
 edition = "2018"
 license = "MPL-2.0"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+default = ["std"]
+std = ["concordium-std/std"]
 
 [dependencies]
-concordium-std = "3.0.0"
+concordium-std = "5.0.0"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
